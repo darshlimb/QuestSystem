@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://dh6n1iaew8v18"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/condition_class.gd" id="1_gqu3l"]
+[ext_resource type="Script" path="res://Scripts/Classes/quest_class.gd" id="2_6nne7"]
+[ext_resource type="Script" path="res://Scripts/SubClass/condition_item_check.gd" id="3_02bwo"]
+
+[sub_resource type="Resource" id="Resource_ol8rq"]
+script = ExtResource("3_02bwo")
+entity_inventory = "Player"
+item = "Banana"
+dev_comment = ""
+
+[sub_resource type="Resource" id="Resource_hk7nw"]
+script = ExtResource("3_02bwo")
+entity_inventory = "Player"
+item = "Apple"
+dev_comment = ""
+
+[resource]
+script = ExtResource("2_6nne7")
+quest_type = 0
+state = 1
+id = "1"
+img_path = "res:// something something"
+title = "BabySteps"
+description = "Give Becky Fruits
+"
+quest_hint = "Give Becky an apple and a banana"
+start_conditions = Array[ExtResource("1_gqu3l")]([])
+fail_conditions = Array[ExtResource("1_gqu3l")]([])
+completion_conditions = Array[ExtResource("1_gqu3l")]([SubResource("Resource_ol8rq"), SubResource("Resource_hk7nw")])

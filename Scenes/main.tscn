@@ -1,0 +1,329 @@
+[gd_scene load_steps=18 format=3 uid="uid://cimu5i47ffgi1"]
+
+[ext_resource type="Script" path="res://Scripts/quest_manager.gd" id="1_p4lap"]
+[ext_resource type="Script" path="res://Scripts/Autoloads/test_game_state_variables.gd" id="2_4428i"]
+[ext_resource type="Script" path="res://Scripts/Classes/quest_class.gd" id="3_8qst3"]
+[ext_resource type="Resource" uid="uid://dh6n1iaew8v18" path="res://deleteQuest.tres" id="4_mncp6"]
+[ext_resource type="Script" path="res://quest_giver.gd" id="4_p8bqi"]
+[ext_resource type="Script" path="res://becky.gd" id="7_kd8rr"]
+[ext_resource type="Script" path="res://player.gd" id="8_jsxq6"]
+[ext_resource type="Script" path="res://Item.gd" id="8_v1xm5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qvyg5"]
+font_size = 20
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rolb"]
+size = Vector2(40, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03m15"]
+size = Vector2(228, 144.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nat6p"]
+font_size = 28
+font_color = Color(0.105882, 0.105882, 0.117647, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o118v"]
+size = Vector2(111, 109)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ve4w"]
+size = Vector2(40, 39)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ps7ud"]
+font_color = Color(0.105882, 0.105882, 0.117647, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uya48"]
+size = Vector2(37, 35)
+
+[sub_resource type="LabelSettings" id="LabelSettings_djr1l"]
+font_color = Color(0.105882, 0.105882, 0.117647, 1)
+
+[node name="main" type="Node2D"]
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Hud"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Hud/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hud/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestPanel" type="Panel" parent="Hud/Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.85
+
+[node name="Vbox" type="VBoxContainer" parent="Hud/Control/HBoxContainer/VBoxContainer/QuestPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Hud/Control/HBoxContainer/VBoxContainer/QuestPanel/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuestText" type="Label" parent="Hud/Control/HBoxContainer/VBoxContainer/QuestPanel/Vbox/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Active Quest: "
+label_settings = SubResource("LabelSettings_qvyg5")
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="Hud/Control/HBoxContainer/VBoxContainer/QuestPanel/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuestText" type="Label" parent="Hud/Control/HBoxContainer/VBoxContainer/QuestPanel/Vbox/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Current Quest:"
+label_settings = SubResource("LabelSettings_qvyg5")
+vertical_alignment = 1
+
+[node name="Control4" type="Control" parent="Hud/Control/HBoxContainer/VBoxContainer/QuestPanel/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CompletedQuests" type="Label" parent="Hud/Control/HBoxContainer/VBoxContainer/QuestPanel/Vbox/Control4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Completed Quest: "
+label_settings = SubResource("LabelSettings_qvyg5")
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="Hud/Control/HBoxContainer/VBoxContainer/QuestPanel/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuestText" type="Label" parent="Hud/Control/HBoxContainer/VBoxContainer/QuestPanel/Vbox/Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_qvyg5")
+vertical_alignment = 1
+
+[node name="Spacing" type="Control" parent="Hud/Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Spacing" type="Control" parent="Hud/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="TestGameStateVariables" type="Node" parent="."]
+script = ExtResource("2_4428i")
+
+[node name="QuestManager" type="Node" parent="."]
+script = ExtResource("1_p4lap")
+available_quest_pool = Array[ExtResource("3_8qst3")]([ExtResource("4_mncp6")])
+
+[node name="Player" type="CharacterBody2D" parent="."]
+z_index = 1
+position = Vector2(115, 290)
+script = ExtResource("8_jsxq6")
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -27.0
+offset_right = 20.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_0rolb")
+
+[node name="Panel" type="Panel" parent="Player"]
+offset_left = -125.0
+offset_top = 46.0
+offset_right = 137.0
+offset_bottom = 120.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Player/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Inv:"
+
+[node name="Label2" type="Label" parent="Player/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Inventory:"
+
+[node name="QuestGiver" type="Area2D" parent="." node_paths=PackedStringArray("quest_manager")]
+position = Vector2(467, 62)
+script = ExtResource("4_p8bqi")
+quest_manager = NodePath("../QuestManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestGiver"]
+position = Vector2(115, 71.75)
+shape = SubResource("RectangleShape2D_03m15")
+
+[node name="ColorRect" type="ColorRect" parent="QuestGiver"]
+offset_right = 232.0
+offset_bottom = 145.0
+color = Color(1, 0.658824, 0.670588, 1)
+
+[node name="Label" type="Label" parent="QuestGiver/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Get Quest"
+label_settings = SubResource("LabelSettings_nat6p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BeckyQuestEnder" type="Area2D" parent="." node_paths=PackedStringArray("quest_manager")]
+position = Vector2(973, 342)
+script = ExtResource("7_kd8rr")
+quest_manager = NodePath("../QuestManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BeckyQuestEnder"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_o118v")
+
+[node name="ColorRect" type="ColorRect" parent="BeckyQuestEnder"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = -56.0
+offset_right = 58.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.572549, 0.784314, 0.933333, 1)
+
+[node name="Label" type="Label" parent="BeckyQuestEnder/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Becky"
+label_settings = SubResource("LabelSettings_nat6p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item1" type="Area2D" parent="."]
+position = Vector2(243, 567)
+script = ExtResource("8_v1xm5")
+item_name = "Apple"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item1"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_0ve4w")
+
+[node name="ColorRect" type="ColorRect" parent="Item1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Item1/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "sadad"
+label_settings = SubResource("LabelSettings_ps7ud")
+
+[node name="Item2" type="Area2D" parent="."]
+position = Vector2(457, 567)
+script = ExtResource("8_v1xm5")
+item_name = "Banana"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Item2"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_uya48")
+
+[node name="ColorRect" type="ColorRect" parent="Item2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Item2/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "sdfdsf"
+label_settings = SubResource("LabelSettings_djr1l")
+
+[connection signal="body_entered" from="QuestGiver" to="QuestGiver" method="_on_body_entered"]
+[connection signal="body_exited" from="QuestGiver" to="QuestGiver" method="_on_body_exited"]
+[connection signal="body_entered" from="BeckyQuestEnder" to="BeckyQuestEnder" method="_on_body_entered"]
+[connection signal="body_exited" from="BeckyQuestEnder" to="BeckyQuestEnder" method="_on_body_exited"]
+[connection signal="body_entered" from="Item1" to="Item1" method="_on_body_entered"]
+[connection signal="body_entered" from="Item2" to="Item2" method="_on_body_entered"]
